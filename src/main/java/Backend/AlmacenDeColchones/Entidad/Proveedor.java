@@ -1,25 +1,35 @@
 package Backend.AlmacenDeColchones.Entidad;
 
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "proveedor")
 public class Proveedor {
+
+    @Id
     private Integer id_proveedor;
     private String nombre;
-    private String apellido_paterno;
-    private String apellido_materno;
-    private String genero;
-    private String direccion;
-    private Integer telefono;
+    private String direccionProveedor;
+    private String rucProveedor;
+    private String telefono;
     private String correo_electronico;
 
-    public Proveedor(Integer id_proveedor, String nombre, String apellido_paterno, String apellido_materno,
-            String genero, String direccion,
-            Integer telefono, String correo_electronico) {
+    @OneToMany(mappedBy = "proveedor")
+    private List<Guia> guia;
+
+    public Proveedor(Integer id_proveedor, String nombre, String direccionProveedor, String rucProveedor,
+            String telefono, String correo_electronico) {
 
         this.id_proveedor = id_proveedor;
         this.nombre = nombre;
-        this.apellido_paterno = apellido_paterno;
-        this.apellido_materno = apellido_materno;
-        this.genero = genero;
-        this.direccion = direccion;
+        this.direccionProveedor = direccionProveedor;
+        this.rucProveedor = rucProveedor;
+        this.direccionProveedor = direccionProveedor;
         this.telefono = telefono;
         this.correo_electronico = correo_electronico;
 
@@ -33,23 +43,15 @@ public class Proveedor {
         return this.nombre;
     }
 
-    public String getApellidoPaterno() {
-        return this.apellido_paterno;
+    public String getDireccionProveedor() {
+        return this.direccionProveedor;
     }
 
-    public String getApellidoMaterno() {
-        return this.apellido_materno;
+    public String getRucProveedor() {
+        return this.rucProveedor;
     }
 
-    public String getgenero() {
-        return this.genero;
-    }
-
-    public String getDireccion() {
-        return this.direccion;
-    }
-
-    public Integer getTelefono() {
+    public String getTelefono() {
         return this.telefono;
     }
 
@@ -57,7 +59,7 @@ public class Proveedor {
         return this.correo_electronico;
     }
 
-    public void setIProveedor(Integer id_proveedor) {
+    public void setIdProveedor(Integer id_proveedor) {
         this.id_proveedor = id_proveedor;
     }
 
@@ -65,23 +67,15 @@ public class Proveedor {
         this.nombre = nombre;
     }
 
-    public void setApellidoPaterno(String apellido_paterno) {
-        this.apellido_paterno = apellido_paterno;
+    public void setDireccionProveedor(String direccionProveedor) {
+        this.direccionProveedor = direccionProveedor;
     }
 
-    public void setApellidoMaterno(String apellido_materno) {
-        this.apellido_materno = apellido_materno;
+    public void setRucProveedor(String rucProveedor) {
+        this.rucProveedor = rucProveedor;
     }
 
-    public void setgenero(String genero) {
-        this.genero = genero;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public void setTelefono(Integer telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 

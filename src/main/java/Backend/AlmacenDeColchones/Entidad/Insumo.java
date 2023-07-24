@@ -1,19 +1,35 @@
 package Backend.AlmacenDeColchones.Entidad;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "insumo")
 public class Insumo {
 
+    @Id
     private Integer id_insumo;
     private String nombre;
     private Integer id_categoria;
     private Float precio;
     private Integer stock;
+    private String estadoInsumo;
 
-    public Insumo(Integer id_insumo, String nombre, Integer id_categoria, Float precio, Integer stock) {
+    @ManyToOne
+    @JoinColumn(name = "id_categoria", insertable = false, updatable = false)
+    private Categoria categoria;
+
+    public Insumo(Integer id_insumo, String nombre, Integer id_categoria, Float precio, Integer stock,
+            String estadoInsumo) {
         this.id_insumo = id_insumo;
         this.nombre = nombre;
         this.id_categoria = id_categoria;
         this.precio = precio;
         this.stock = stock;
+        this.estadoInsumo = estadoInsumo;
     }
 
     public Integer getIdInsumo() {
@@ -36,6 +52,10 @@ public class Insumo {
         return this.stock;
     }
 
+    public String getEstadoDeInsumo() {
+        return this.estadoInsumo;
+    }
+
     public void setIdInsumo(Integer id_insumo) {
         this.id_insumo = id_insumo;
     }
@@ -54,5 +74,9 @@ public class Insumo {
 
     public void setStock(Integer stock) {
         this.stock = stock;
+    }
+
+    public void setEstadoDeInsumo(String estadoInsumo) {
+        this.estadoInsumo = estadoInsumo;
     }
 }

@@ -1,21 +1,48 @@
 package Backend.AlmacenDeColchones.Entidad;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "guia")
 public class Guia {
 
+    @Id
     private Integer id_guia;
     private Integer id_empleado;
-    private Date fecha_de_guia;
-    private Integer numero_documento;
     private String estado;
+    private LocalDateTime fechaDeEntrega;
+    private Integer id_Proveedor;
+    private String puntoDePartida;
+    private Integer idCliente;
 
-    public Guia(Integer id_guia, Integer id_empleado, Date fecha_de_guia, Integer numero_documento, String estado) {
+    @ManyToOne
+    @JoinColumn(name = "id_empleado", insertable = false, updatable = false)
+    private Empleado empleado;
+
+    @ManyToOne
+    @JoinColumn(name = "idCliente", insertable = false, updatable = false)
+    private Cliente cliente;
+
+    @ManyToOne
+    @JoinColumn(name = "id_Proveedor", insertable = false, updatable = false)
+    private Proveedor proveedor;
+
+    public Guia(Integer id_guia, Integer id_empleado, String estado, LocalDateTime fechaDeENtrega,
+            Integer id_Proveedor, String puntoDePartida, Integer idCliente) {
         this.id_guia = id_guia;
         this.id_empleado = id_empleado;
-        this.fecha_de_guia = fecha_de_guia;
-        this.numero_documento = numero_documento;
         this.estado = estado;
+        this.fechaDeEntrega = fechaDeENtrega;
+        this.id_Proveedor = id_Proveedor;
+        this.puntoDePartida = puntoDePartida;
+        this.idCliente = idCliente;
     }
 
     public Integer getIdGuia() {
@@ -26,16 +53,24 @@ public class Guia {
         return this.id_empleado;
     }
 
-    public Date getFechaDeGuia() {
-        return this.fecha_de_guia;
-    }
-
-    public Integer getNumeroDeDocumento() {
-        return this.numero_documento;
-    }
-
     public String getEstado() {
         return this.estado;
+    }
+
+    public LocalDateTime getFechaDeEntrega() {
+        return this.fechaDeEntrega;
+    }
+
+    public Integer getIdProveedor() {
+        return this.id_Proveedor;
+    }
+
+    public String getPuntoDePartida() {
+        return puntoDePartida;
+    }
+
+    public Integer getIdCliente() {
+        return idCliente;
     }
 
     public void setIdGuia(Integer id_guia) {
@@ -46,16 +81,24 @@ public class Guia {
         this.id_empleado = id_empleado;
     }
 
-    public void setFechaDeGuia(Date fecha_de_guia) {
-        this.fecha_de_guia = fecha_de_guia;
-    }
-
-    public void setNumeroDeDocumento(Integer numero_de_documento) {
-        this.numero_documento = numero_de_documento;
-    }
-
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public void setFechadeEntrega(LocalDateTime fechaDeEntrega) {
+        this.fechaDeEntrega = fechaDeEntrega;
+    }
+
+    public void setIdProveedor(Integer id_Proveedor) {
+        this.id_Proveedor = id_Proveedor;
+    }
+
+    public void setPuntoDePartida(String puntoDePartida) {
+        this.puntoDePartida = puntoDePartida;
+    }
+
+    public void setIdCliente(Integer idCliente) {
+        this.idCliente = idCliente;
     }
 
 }
